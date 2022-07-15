@@ -1,11 +1,20 @@
-namespace GameUtils{
+#include <vector>
+#include "Effect.hpp"
+#include "GameUtils.hpp"
 
-    class Config{
-        static int window_width;
-        static int window_height;
-    };
+namespace GameUtils{
 
     int Config::window_width = 1280;
     int Config::window_height = 720;
+
+
+    void Context::push_effect(Effect *fx){
+        effect_queue->push_back(fx);
+    }
+    
+    Context::Context(std::vector<Effect *> *fxq){
+        this->effect_queue = fxq;
+    }
+
 }
 

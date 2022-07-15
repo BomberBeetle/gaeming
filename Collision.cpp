@@ -8,9 +8,11 @@ void Collision::Draw(){
 }
 
 Collision::Collision(){
-    this->hitbox = { .x = (float)GameUtils::Config::window_width/2, .y = (float)GameUtils::Config::window_height/2, .width = 20, .height = 20,};
+    this->hitbox = { .x = (float)GameUtils::Config::window_width/2, .y = (float)GameUtils::Config::window_height/2, .width = 500, .height = 500,};
 }
 
 Collision::Collision(Rectangle hitbox){
  this->hitbox = hitbox;
 }
+
+Collision::~Collision(){};
