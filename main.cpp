@@ -15,7 +15,7 @@ int main(int argc, char* argv[]){
 
     InitWindow(Config::window_width, Config::window_height, "Test-icles");
 
-    SetTargetFPS(60);  
+    SetTargetFPS(Config::target_fps);  
 
     std::vector<Actor *> actors = {};
 
@@ -84,6 +84,5 @@ int main(int argc, char* argv[]){
             }
         }
 
-        DrawText(std::to_string(effects.size()).c_str(), 0, 0, 20, RED);
     }
 }

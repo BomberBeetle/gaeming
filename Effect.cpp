@@ -18,5 +18,19 @@ RectDisplay::RectDisplay(Rectangle rect, Color color){
     this->despawn_counter = 0;
 };
 
+TextEffect::TextEffect(char* text, int x, int y, int size, Color color, int duration){
+    this->text = text;
+    this->x = x;
+    this->y = y;
+    this->size = size;
+    this->color = color;
+    this->despawn_counter = duration;
+}
+
+void TextEffect::Draw(){
+    DrawText(this->text, this->x, this->y, this->size, this->color);
+}
+
+TextEffect::~TextEffect(){};
 RectDisplay::~RectDisplay(){};
 Effect::~Effect(){};

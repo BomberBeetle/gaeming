@@ -1,4 +1,8 @@
+#ifndef H_ACTOR
+#define H_ACTOR
+
 #include <raylib.h>
+
 #include "Collision.hpp"
 #include "GameUtils.hpp"
 
@@ -6,13 +10,24 @@ using namespace GameUtils;
 
 class Actor{
     public:
-        virtual void Draw() = 0;
-        virtual void Update() = 0;
-        virtual void OnCollision(Collision C, Rectangle CollisionData) = 0;
-        int x_pos;
-        int y_pos;
+        Actor(Context *);
+        ~Actor();
+        virtual void Draw();
+        virtual void Update();
+        virtual void OnCollision(Collision C, Rectangle CollisionData);
+        float GetYPos();
+        float GetXPos();
+        float GetXPos_prev();
+        float GetYPos_prev();
+        void SetYPos(float);
+        void SetXPos(float);
         Context* context;
         Rectangle hitbox;
+    private:
+        float x_pos;
+        float y_pos;
+        float x_prev;
+        float y_prev;
 };
 class TestActor: public Actor{
     public:
@@ -21,4 +36,8 @@ class TestActor: public Actor{
         void Draw();
         void Update();
         void OnCollision(Collision C, Rectangle CollisionData);
+        float velocity_x;
+        float velocity_y;
+
 };
+#endif
