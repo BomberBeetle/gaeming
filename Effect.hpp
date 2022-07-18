@@ -5,7 +5,7 @@
 
 class Effect{
     public:
-    int despawn_counter;
+    float despawn_counter;
     virtual void Draw() = 0;
     virtual ~Effect();
 };

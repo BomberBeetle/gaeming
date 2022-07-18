@@ -13,6 +13,7 @@ namespace GameUtils{
     }
     
     Context::Context(std::vector<Effect *> *fxq){
+        this->frame_delta = 0;
         this->effect_queue = fxq;
     }
 

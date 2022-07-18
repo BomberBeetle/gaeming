@@ -15,7 +15,7 @@ int main(int argc, char* argv[]){
 
     InitWindow(Config::window_width, Config::window_height, "Test-icles");
 
-    SetTargetFPS(Config::target_fps);  
+    //SetTargetFPS(Config::target_fps);  //Apparently setting this up fucks up the input code in a way that freezes the program
 
     std::vector<Actor *> actors = {};
 
@@ -27,13 +27,20 @@ int main(int argc, char* argv[]){
 
     Context* ctx = new Context(&effects);
 
+    
 
+    for(int i = 0; i < 1000; i++){
+        actors.push_back(new TestActor(ctx));
+    }
 
     Actor* a = new TestActor(ctx);
 
     actors.push_back(a);
 
     while(!WindowShouldClose()){
+
+        ctx->frame_delta = GetFrameTime();
+
         //Actor update code
         for(Actor* actor:actors){
             actor->Update();
@@ -75,7 +82,7 @@ int main(int argc, char* argv[]){
         fx_iter = effects.begin();
         while(fx_iter != effects.end()){
 
-            (*fx_iter)->despawn_counter--;
+            (*fx_iter)->despawn_counter -= ctx->frame_delta;
             if((*fx_iter)->despawn_counter < 1){
                 fx_iter = effects.erase(fx_iter);
             }

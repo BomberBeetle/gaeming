@@ -17,6 +17,7 @@ namespace GameUtils{
         public:
             void push_effect(Effect *);
             Context(std::vector<Effect *> *);
+            float frame_delta;
     };
 }
 

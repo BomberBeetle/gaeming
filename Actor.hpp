@@ -38,6 +38,6 @@ class TestActor: public Actor{
         void OnCollision(Collision C, Rectangle CollisionData);
         float velocity_x;
         float velocity_y;
-
+        bool grounded;
 };
 #endif
