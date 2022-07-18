@@ -58,14 +58,22 @@ void Actor::OnCollision(Collision C, Rectangle CollisionData){
 
 void TestActor::Update(){
 
+    if(IsKeyDown(KEY_D)){
+        velocity_x = 3;
+    }
+    else if(IsKeyDown(KEY_A)){
+        velocity_x = -3;
+    }
+    else{
+        velocity_x = 0;
+    }
+
     this->SetXPos(this->GetXPos()+this->velocity_x);
     this->SetYPos(this->GetYPos()+this->velocity_y);
 
     this->hitbox = {.x = this->GetXPos(), .y = this->GetYPos(), .width = 20., .height = 20};
 
-    velocity_y += 0.1;
-
-    
+    velocity_y += 0.5;
 
 };
 
@@ -81,12 +89,12 @@ TestActor::TestActor(Context *ctx):Actor(ctx){
 TestActor::~TestActor(){}
 
 void TestActor::OnCollision(Collision C, Rectangle CollisionData){
-    this->context->push_effect(new TextEffect("lol", 0, 0, 20, RED, 1));
+    this->context->push_effect(new TextEffect("bruh", 0, 0, 20, RED, 0));
 
-    if(this->hitbox.x < C.hitbox.x) this->SetXPos(C.hitbox.x - this->hitbox.width);
-    else if(this->hitbox.x + this->hitbox.width > C.hitbox.x + C.hitbox.width) this->SetXPos(C.hitbox.x);
+    if(this->hitbox.x < C.hitbox.x) {this->SetXPos(C.hitbox.x - this->hitbox.width); this->velocity_x = 0; }
+    else if(this->hitbox.x + this->hitbox.width > C.hitbox.x + C.hitbox.width) {this->SetXPos(C.hitbox.x + C.hitbox.width); this->velocity_x = 0;}
 
-    if(this->hitbox.y < C.hitbox.y) this->SetYPos(C.hitbox.y - this->hitbox.height);
-    else if(this->hitbox.y + this->hitbox.height > C.hitbox.y + C.hitbox.height) this->SetYPos(C.hitbox.y);
+    if(this->hitbox.y < C.hitbox.y) {this->SetYPos(C.hitbox.y - this->hitbox.height); this->velocity_y = 0;}
+    else if(this->hitbox.y + this->hitbox.height > C.hitbox.y + C.hitbox.height) {this->SetYPos(C.hitbox.y + C.hitbox.height); this->velocity_y = 0;}
 
 }
